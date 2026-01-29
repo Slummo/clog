@@ -33,26 +33,26 @@ extern int log_level;
         }                                    \
     }
 
-#define printl(type, fmt, ...)                                  \
-    {                                                           \
-        if (log_level >= type) {                                \
-            switch (type) {                                     \
-                case LOG_ERR:                                   \
-                    ERR("{-}[%s:%d] " fmt, __FILE__, __LINE__); \
-                    break;                                      \
-                case LOG_WARN:                                  \
-                    OUT("{~}[%s:%d] " fmt, __FILE__, __LINE__); \
-                    break;                                      \
-                case LOG_INFO:                                  \
-                    OUT("{+}[%s:%d] " fmt, __FILE__, __LINE__); \
-                    break;                                      \
-                case LOG_DEBUG:                                 \
-                    OUT("{*}[%s:%d] " fmt, __FILE__, __LINE__); \
-                    break;                                      \
-                default:                                        \
-                    break;                                      \
-            }                                                   \
-        }                                                       \
+#define printl(type, fmt, ...)                                                 \
+    {                                                                          \
+        if (log_level >= type) {                                               \
+            switch (type) {                                                    \
+                case LOG_ERR:                                                  \
+                    ERR("{-}[%s:%d] " fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
+                    break;                                                     \
+                case LOG_WARN:                                                 \
+                    OUT("{~}[%s:%d] " fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
+                    break;                                                     \
+                case LOG_INFO:                                                 \
+                    OUT("{+}[%s:%d] " fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
+                    break;                                                     \
+                case LOG_DEBUG:                                                \
+                    OUT("{*}[%s:%d] " fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
+                    break;                                                     \
+                default:                                                       \
+                    break;                                                     \
+            }                                                                  \
+        }                                                                      \
     }
 
 void log_init(void);

@@ -4,7 +4,7 @@
 
 # Library metadata
 LIB_NAME	:= clog
-VERSION		:= 1.0.1
+VERSION		:= 1.0.2
 MAJOR_VER	:= $(firstword $(subst ., ,$(VERSION)))
 
 # Directories
@@ -105,7 +105,7 @@ build_compiled: $(TARGET_LIB_REAL)
 
 $(TARGET_LIB_REAL): $(LIB_OBJS)
 	@$(MKDIR) $(dir $@)
-	@echo " [LD] $@"
+	@echo "[LD] $@"
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 	@# Create Symlinks for versioning
 	@ln -sf $(notdir $@) $(TARGET_LIB_SO)
@@ -119,7 +119,7 @@ build_header:
 ifeq ($(HAS_TESTS),yes)
 $(TARGET_TEST): $(TEST_OBJS) $(TEST_DEPS)
 	@$(MKDIR) $(dir $@)
-	@echo " [LD] $@"
+	@echo "[LD] $@"
 	@$(CC) $(CFLAGS) $(TEST_OBJS) $(TEST_LIBS) -o $@
 endif
 
@@ -127,7 +127,7 @@ endif
 
 $(DIR_BLD)/%.o: %.c
 	@$(MKDIR) $(dir $@)
-	@echo " [CC] $<"
+	@echo "[CC] $<"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # --- Helpers ---
