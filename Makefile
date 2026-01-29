@@ -105,7 +105,7 @@ build_compiled: $(TARGET_LIB_REAL)
 
 $(TARGET_LIB_REAL): $(LIB_OBJS)
 	@$(MKDIR) $(dir $@)
-	@echo " [LD] Shared Lib: $@"
+	@echo " [LD] $@"
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 	@# Create Symlinks for versioning
 	@ln -sf $(notdir $@) $(TARGET_LIB_SO)
@@ -119,7 +119,7 @@ build_header:
 ifeq ($(HAS_TESTS),yes)
 $(TARGET_TEST): $(TEST_OBJS) $(TEST_DEPS)
 	@$(MKDIR) $(dir $@)
-	@echo " [LD] Test Runner: $@"
+	@echo " [LD] $@"
 	@$(CC) $(CFLAGS) $(TEST_OBJS) $(TEST_LIBS) -o $@
 endif
 
