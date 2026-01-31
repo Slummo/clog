@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <errno.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define LOG_ERR 0
@@ -55,6 +56,11 @@ extern int log_level;
         }                                                                      \
     }
 
-void log_init(void);
+static inline void log_init(void) {
+    char* env = getenv("LOG_LEVEL");
+    if (env) {
+        log_level = atoi(env);
+    }
+}
 
 #endif

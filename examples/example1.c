@@ -1,4 +1,4 @@
-#include <clog/log.h>
+#include <clog/core.h>
 
 int log_level = LOG_INFO;
 
